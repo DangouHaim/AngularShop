@@ -10,12 +10,11 @@ import { IProduct, Product } from 'src/app/products/models/product';
 export class ProductComponent {
 
   @Input()
-  product: IProduct = new Product("Book", "Book description", 0, Category.Book, true);
+  product: IProduct = new Product("Book", "Book description", 150, Category.Book, true);
 
   constructor() { }
 
-  onProductPurchase()
-  {
+  onProductPurchase() {
     
   }
 

@@ -9,6 +9,7 @@ import { PurchaseAlertComponent } from './purchases/purchase-alert/purchase-aler
 import { ButtonComponent } from './shared/components/button/button.component';
 import { HoverClassDirective } from './shared/directives/hover-class.directive';
 import { PressedClassDirective } from './shared/directives/pressed-class.directive';
+import { ProductListComponent } from './products/product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { PressedClassDirective } from './shared/directives/pressed-class.directi
     ProductComponent,
     ButtonComponent,
     PurchaseAlertComponent,
+    ProductListComponent,
     HoverClassDirective,
     PressedClassDirective,
   ],
