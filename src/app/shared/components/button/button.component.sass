@@ -1,0 +1,23 @@
+.button
+    background: #fff
+    padding: 10px
+    color: darkblue
+    text-align: center
+    cursor: pointer
+    transition: all 0.3s
+    min-width: 100px
+
+    &.prevent-text-selection
+        -webkit-user-select: none
+        -ms-user-select: none
+        user-select: none
+
+    &.active.highlight
+        background: skyblue
+
+    &.active.pressed
+        transition: all 0.8s
+        background: #fff
+
+    &.inactive
+        background: darkgrey

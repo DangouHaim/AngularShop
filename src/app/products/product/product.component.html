@@ -1,0 +1,12 @@
+<div class="card-container">
+  <div class="card">
+    <span>{{product.name}}</span>
+    <span>{{product.description}}</span>
+    <span>{{product.price}}</span>
+    <div [ngSwitch]="product.category">
+      <span *ngSwitchCase="0">Book</span>
+      <span *ngSwitchCase="1">Notepad</span>
+    </div>
+    <app-button [name]="'Buy'" [isActive]="product.isAvailable" (click)="onProductPurchase"></app-button>
+  </div>
+</div>
