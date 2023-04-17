@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Category } from '../enums/category.enum';
-import { Product } from '../models/product';
+import { Product, IProduct } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class ProductService {
 
 constructor() { }
 
-getProducts() {
+getProducts() : Array<IProduct> {
   return [
     new Product("How to be inactive", "This book is actually about how to be inactive", 150, Category.Book, false),
     new Product("How to be an active", "Press the button", 150, Category.Book, true),

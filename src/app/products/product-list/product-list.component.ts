@@ -1,6 +1,5 @@
 import { Component, Output } from '@angular/core';
-import { IProduct, Product } from '../models/product';
-import { Category } from '../enums/category.enum';
+import { IProduct } from '../models/product';
 import { ProductService } from '../services/product.service';
 
 @Component({

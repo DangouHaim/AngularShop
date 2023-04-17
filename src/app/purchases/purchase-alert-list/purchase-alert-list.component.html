@@ -1,0 +1,5 @@
+<div>
+  <div *ngFor="let notification of notifications; index as i; first as isFirst">
+    <app-purchase-alert *ngIf="notification.isVisible" [notification]="notification"></app-purchase-alert>
+  </div>
+</div>

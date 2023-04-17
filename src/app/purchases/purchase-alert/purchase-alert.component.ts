@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
+import { INotification } from '../models/notification';
 
 @Component({
   selector: 'app-purchase-alert',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
 })
 export class PurchaseAlertComponent {
 
+  @Input()
+  notification!: INotification;
+
   constructor() { }
 
+  hide() {
+    this.notification.isVisible = false;
+  }
 }
