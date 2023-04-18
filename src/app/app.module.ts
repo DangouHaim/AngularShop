@@ -11,6 +11,7 @@ import { HoverClassDirective } from './shared/directives/hover-class.directive';
 import { PressedClassDirective } from './shared/directives/pressed-class.directive';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { PurchaseAlertListComponent } from './purchases/purchase-alert-list/purchase-alert-list.component';
+import { CartComponent } from './purchases/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PurchaseAlertListComponent } from './purchases/purchase-alert-list/purc
     ProductListComponent,
     PurchaseAlertComponent,
     PurchaseAlertListComponent,
+    CartComponent,
     HoverClassDirective,
     PressedClassDirective,
   ],

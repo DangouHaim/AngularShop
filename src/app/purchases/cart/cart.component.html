@@ -1,0 +1,12 @@
+<ol *ngIf="products.length > 0 else noElements">
+  <li *ngFor="let product of products; trackBy: trackById">
+    <app-product [product]="product"></app-product>
+  </li>
+</ol>
+<ng-template #noElements>
+  <div class="empty-cart">
+    <div class="wrap">
+      <span>Cart is empty</span>
+    </div>
+  </div>
+</ng-template>

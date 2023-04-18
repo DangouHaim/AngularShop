@@ -1,5 +1,5 @@
 <ol>
-  <li *ngFor="let product of products; index as i; first as isFirst">
+  <li *ngFor="let product of products; trackBy: trackById">
     <app-product [product]="product"></app-product>
   </li>
 </ol>

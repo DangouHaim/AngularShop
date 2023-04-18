@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { INotification, Notification } from '../models/notification';
+import { INotification } from '../models/notification';
 
 @Injectable({
   providedIn: 'root'
