@@ -16,8 +16,8 @@ export class ProductComponent {
   product!: IProduct;
 
   constructor(
-    public notificationService: NotificationService,
-    public cartService: CartService
+    private notificationService: NotificationService,
+    private cartService: CartService
   ) { }
 
   onProductPurchase() {
