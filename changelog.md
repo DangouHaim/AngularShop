@@ -19,3 +19,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Notification service
 - Product service
 - Product and notification models
+
+## [0.0.1] - 2023-04-18
+
+### Added - 2023-05-16
+
+- Added shared module
+- Added cart counter and event handlers
+- Add increase/decrease features to cart
+- Added cart items highlight
