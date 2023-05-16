@@ -9,6 +9,7 @@ export interface IProduct extends IUniqueObject {
     category: Category;
     isAvailable: boolean;
     isCartItem: boolean;
+    count: number;
 }
 
 export class Product extends UniqueObject implements IProduct {
@@ -19,5 +20,6 @@ export class Product extends UniqueObject implements IProduct {
         public category: Category,
         public isAvailable: boolean,
         public isCartItem: boolean = false,
+        public count: number = 1,
         ) { super() }
 }

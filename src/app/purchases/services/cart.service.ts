@@ -9,7 +9,7 @@ import { ProductEventArgs } from 'src/app/products/events-args/product-event-arg
 })
 export class CartService {
   private products: Array<IProduct> = new Array<IProduct>();
-  private addProductEventEmitter: EventEmitter<IProduct> = new EventEmitter();
+  private productListChangedEvent: EventEmitter<IProduct> = new EventEmitter();
 
   constructor() { }
 
@@ -18,11 +18,34 @@ export class CartService {
     cartProduct.isCartItem = true;
 
     this.products.push(cartProduct);
-    this.addProductEventEmitter.emit(cartProduct);
+    this.productListChangedEvent.emit(cartProduct);
   }
 
-  bindAddProductEventHandler(handler : Function, handlerContext : object) {
-    this.addProductEventEmitter.subscribe(product => handler(
+  removeProduct(product: IProduct) {
+    const index = this.products.indexOf(product, 0);
+
+    if (index > -1) {
+      this.products.splice(index, 1);
+    }
+
+    this.productListChangedEvent.emit(product);
+  }
+
+  increaseProductCount(product: IProduct) {
+    product.count++;
+
+    this.productListChangedEvent.emit(product);
+  }
+
+  decreaseProductCount(product: IProduct) {
+    if (product.count > 1) {
+      product.count--;
+      this.productListChangedEvent.emit(product);
+    }
+  }
+
+  bindProductListChangedHandler(handler : Function, handlerContext : object) {
+    this.productListChangedEvent.subscribe(product => handler(
       new EventHandlerContext(handlerContext, this, new ProductEventArgs(product))));
   }
 
@@ -33,7 +56,7 @@ export class CartService {
   getTotalPrice() {
     var total : number = 0;
 
-    for(var price of this.products.map(p => p.price)) {
+    for(var price of this.products.map(p => p.price * p.count)) {
       total = total + price;
     }
 

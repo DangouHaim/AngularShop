@@ -2,11 +2,15 @@
   <div class="card">
     <span>{{product.name}}</span>
     <span>{{product.description}}</span>
-    <span>{{product.price}}</span>
+    <span>Price: {{product.price}}</span>
+    <span>Count: {{product.count}}</span>
     <div [ngSwitch]="product.category">
       <span *ngSwitchCase="0">Book</span>
       <span *ngSwitchCase="1">Notepad</span>
     </div>
     <app-button *ngIf="!product.isCartItem" [name]="'Buy'" [isActive]="product.isAvailable" (click)="onProductPurchase()"></app-button>
+    <app-button *ngIf="product.isCartItem" [name]="'-'" [isActive]="product.isAvailable && product.count > 1" (click)="onDecreaseProductCount()"></app-button>
+    <app-button *ngIf="product.isCartItem" [name]="'+'" [isActive]="product.isAvailable" (click)="onIncreaseProductCount()"></app-button>
+    <app-button *ngIf="product.isCartItem" [name]="'Remove'" [isActive]="product.isAvailable" (click)="onProductRemove()"></app-button>
   </div>
 </div>

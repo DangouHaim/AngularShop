@@ -22,7 +22,7 @@ export class CartComponent extends Trackable implements OnInit {
     super();
 
     this.products = cartService.getProducts();
-    cartService.bindAddProductEventHandler(this.onProductAddedHandler, this);
+    cartService.bindProductListChangedHandler(this.onProductAddedHandler, this);
   }
 
   ngOnInit() {

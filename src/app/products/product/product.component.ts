@@ -21,7 +21,23 @@ export class ProductComponent {
   ) { }
 
   onProductPurchase() {
+    if (!this.product.isAvailable) {
+      return;
+    }
+
     this.notificationService.addNotification(new Notification("Item have been purchased.", this.product));
     this.cartService.addProduct(this.product);
+  }
+
+  onProductRemove() {
+    this.cartService.removeProduct(this.product);
+  }
+
+  onIncreaseProductCount() {
+    this.cartService.increaseProductCount(this.product);
+  }
+
+  onDecreaseProductCount() {
+    this.cartService.decreaseProductCount(this.product);
   }
 }
