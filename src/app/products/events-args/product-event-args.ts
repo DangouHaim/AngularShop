@@ -3,6 +3,7 @@ import { IProduct } from "../models/product";
 
 export class ProductEventArgs implements IEventArgs {
     constructor (
-      public product : IProduct,
+      public products : ReadonlyArray<IProduct>,
+      public product : Readonly<IProduct>,
     ) { }
   }

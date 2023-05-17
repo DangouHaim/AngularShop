@@ -1,9 +1,12 @@
-<div *ngIf="products.length > 0 else noElements">
+<div *ngIf="!isEmptyCart() else noElements">
   <ol>
     <li *ngFor="let product of products; trackBy: trackById">
       <app-product [product]="product"></app-product>
     </li>
   </ol>
+  <div class="clear">
+    <app-button [name]="'Clear'" (click)="onCartClear()"></app-button>
+  </div>
   <div class="total">
     <span class="total-count">Total count: <span>{{count}}</span></span>
     <span class="total-price">Total price: <span>{{total}}</span></span>

@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 export class ButtonComponent {
 
   @Input()
-  isActive!: boolean;
+  isActive: boolean = true;
 
   @Input()
   name!: string;

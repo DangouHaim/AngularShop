@@ -2,7 +2,6 @@ import { Component, OnInit, Output, SimpleChanges } from '@angular/core';
 import { IProduct } from 'src/app/products/models/product';
 import { CartService } from '../services/cart.service';
 import { Trackable } from '../../shared/extentions/Trackable';
-import { EventHandlerContext } from 'src/app/shared/events/event-handler-context';
 
 @Component({
   selector: 'app-cart',
@@ -12,29 +11,37 @@ import { EventHandlerContext } from 'src/app/shared/events/event-handler-context
 export class CartComponent extends Trackable implements OnInit {
 
   @Output()
-  products!: Array<IProduct>;
+  products!: ReadonlyArray<IProduct>;
   @Output()
-  total!: number;
+  total!: Readonly<number>;
   @Output()
-  count!: number;
+  count!: Readonly<number>;
 
-  constructor(cartService: CartService) {
+  constructor(private cartService: CartService) {
     super();
 
     this.products = cartService.getProducts();
-    cartService.bindProductListChangedHandler(this.onProductAddedHandler, this);
+    cartService.bindProductListChangedEventHandler(this.onProductListChangedHandler, this);
+    cartService.bindproductListClearedEventHandler(this.onProductListClearedHandler, this);
   }
 
   ngOnInit() {
   }
 
-  onProductAddedHandler(handlerContext : EventHandlerContext<CartComponent, CartService>) {
-
-    handlerContext.handlerContext.total = handlerContext.sender.getTotalPrice();
-    handlerContext.handlerContext.count = handlerContext.sender.getTotalCount();
+  onProductListChangedHandler(context : CartComponent, cartService : CartService) {
+    context.total = cartService.getTotalPrice();
+    context.count = cartService.getTotalCount();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log("ngOnChanges");
+  onProductListClearedHandler(context : CartComponent, cartService : CartService) {
+    context.products = cartService.getProducts();
+  }
+
+  onCartClear() {
+    this.cartService.clear();
+  }
+
+  isEmptyCart() {
+    return this.cartService.isEmpty();
   }
 }
