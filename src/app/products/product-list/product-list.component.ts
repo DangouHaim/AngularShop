@@ -13,6 +13,7 @@ export class ProductListComponent extends Trackable {
   @Output()
   products!: Array<IProduct>;
 
+  // зачем тут private?
   constructor(private productService: ProductService) {
     super();
 

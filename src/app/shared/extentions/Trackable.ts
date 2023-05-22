@@ -1,7 +1,7 @@
 import { IUniqueObject } from "./UniqueObject";
 
-export class Trackable {
+export class Trackable<T extends { id: string } = IUniqueObject> {
   constructor () { }
 
-  trackById(index: number, item: IUniqueObject): string { return item.id; }
+  trackById(index: number, item: T): string { return item.id; }
 }
