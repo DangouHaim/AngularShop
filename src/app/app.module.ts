@@ -12,6 +12,8 @@ import { CartComponent } from './purchases/cart/cart.component';
 import { SharedModule } from './shared/modules/shared/shared.module';
 
 @NgModule({
+  // Во втором задании уже надо было разложить компоненты по смоим модулям
+  // или используйте standalone
   declarations: [
     AppComponent,
     FakeComponent,
@@ -31,3 +33,6 @@ import { SharedModule } from './shared/modules/shared/shared.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+// Думаю, что вы усложнили проект, введя много дополнительных классов и интерфейсов.
+// Это только вторая тема. Впереди еще много тем и еще будет над чем поработать.
+// Главное, чтобы вы не забросили и чтобы не было сложно внедрять следующий функционал.

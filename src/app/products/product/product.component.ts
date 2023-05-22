@@ -15,6 +15,7 @@ export class ProductComponent {
   @Input()
   product!: IProduct;
 
+  // Я бы не добавлял этому компоненту зависимости
   constructor(
     private notificationService: NotificationService,
     private cartService: CartService
