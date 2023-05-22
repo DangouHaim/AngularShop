@@ -31,3 +31,4 @@ import { SharedModule } from './shared/modules/shared/shared.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+// если есть реализация, добавьте в ветку master
