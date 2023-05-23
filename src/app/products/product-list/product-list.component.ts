@@ -13,7 +13,7 @@ export class ProductListComponent extends Trackable {
   @Output()
   products!: Array<IProduct>;
 
-  constructor(private productService: ProductService) {
+  constructor(productService: ProductService) {
     super();
 
     this.products = productService.getProducts();
