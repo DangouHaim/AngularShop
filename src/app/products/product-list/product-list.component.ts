@@ -2,6 +2,7 @@ import { Component, Output } from '@angular/core';
 import { Trackable } from 'src/app/shared/extentions/Trackable';
 import { IProduct } from '../models/product';
 import { ProductService } from '../services/product.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -11,7 +12,7 @@ import { ProductService } from '../services/product.service';
 export class ProductListComponent extends Trackable {
 
   @Output()
-  products!: Array<IProduct>;
+  products!: Observable<Array<IProduct>>;
 
   constructor(productService: ProductService) {
     super();
