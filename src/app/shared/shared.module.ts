@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedComponent } from './shared.component';
-import { ButtonComponent, HoverClassDirective, PressedClassDirective } from './index';
+import { ButtonComponent, FakeComponent, HoverClassDirective, PressedClassDirective } from './index';
 
 @NgModule({
   imports: [
@@ -10,12 +10,14 @@ import { ButtonComponent, HoverClassDirective, PressedClassDirective } from './i
   declarations: [
     SharedComponent,
     ButtonComponent,
+    FakeComponent,
     HoverClassDirective,
     PressedClassDirective,
   ],
   providers: [],
   exports: [
     ButtonComponent,
+    FakeComponent,
     HoverClassDirective,
     PressedClassDirective,
   ],

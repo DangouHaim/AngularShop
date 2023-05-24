@@ -3,6 +3,7 @@ import { IProduct } from 'src/app/products/models/product';
 import { NotificationService } from '../../purchases/services/notification.service';
 import { Notification } from '../../purchases/models/notification';
 import { CartService } from 'src/app/purchases/services/cart.service';
+import { ConfigOptionsService } from 'src/app/shared/services/config-options.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class ProductComponent {
 
   constructor(
     private notificationService: NotificationService,
-    private cartService: CartService
+    private cartService: CartService,
+    private config: ConfigOptionsService
   ) { }
 
   onProductPurchase() {
@@ -25,7 +27,9 @@ export class ProductComponent {
       return;
     }
 
-    this.notificationService.addNotification(new Notification("Item have been purchased.", this.product));
+    this.config.setConfig({id: "sad"});
+    var v = this.config.getConfig();
+    this.notificationService.addNotification(new Notification("Item have been purchased." + v.id, this.product));
     this.cartService.addProduct(this.product);
   }
 
