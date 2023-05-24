@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- All components now splitted to modules
 - Added shared module
 - Added cart counter and event handlers
 - Added increase/decrease features to cart
@@ -31,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Task-3] - 2023-05-24
 
+- Added immutable functionality for cart service
 - Added ConfigOptionsService and ConstantService
 - Added generator service and generation factory
 - Added IdGeneratorService
