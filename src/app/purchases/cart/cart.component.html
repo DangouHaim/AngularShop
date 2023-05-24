@@ -1,4 +1,18 @@
 <div *ngIf="!isEmptyCart() else noElements">
+
+  <div class="sorting">
+    <span>Order by </span>
+    <select [(ngModel)]="orderBy">
+      <option>Price</option>
+      <option>Count</option>
+      <option>Name</option>
+    </select>
+    <input id="asc" type="checkbox" [(ngModel)]="ascending">
+    <label for="asc">Ascending</label>
+  </div>
+<p>
+  {{products | orderBy : orderBy : ascending}}
+</p>
   <ol>
     <li *ngFor="let product of products; trackBy: trackById">
       <app-product [product]="product"></app-product>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { IProduct } from 'src/app/products/models/product';
 import { CartService } from '../services/cart.service';
 import { Trackable } from '../../shared/extentions/Trackable';
@@ -16,6 +16,10 @@ export class CartComponent extends Trackable implements OnInit {
   total!: Readonly<number>;
   @Output()
   count!: Readonly<number>;
+  @Input()
+  ascending: boolean = false;
+  @Input()
+  orderBy: string = "Price";
 
   constructor(private cartService: CartService) {
     super();

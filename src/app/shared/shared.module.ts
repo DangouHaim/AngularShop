@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedComponent } from './shared.component';
 import { ButtonComponent, FakeComponent, HoverClassDirective, PressedClassDirective, SelectedDirective } from './index';
+import { FormsModule } from '@angular/forms';
+import { OrderByPipe } from './pipes/order-by.pipe';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
   ],
   declarations: [
     SharedComponent,
@@ -14,6 +17,7 @@ import { ButtonComponent, FakeComponent, HoverClassDirective, PressedClassDirect
     HoverClassDirective,
     PressedClassDirective,
     SelectedDirective,
+    OrderByPipe,
   ],
   providers: [],
   exports: [
@@ -22,6 +26,9 @@ import { ButtonComponent, FakeComponent, HoverClassDirective, PressedClassDirect
     HoverClassDirective,
     PressedClassDirective,
     SelectedDirective,
+    OrderByPipe,
+    CommonModule,
+    FormsModule,
   ],
 })
 export class SharedModule { }
