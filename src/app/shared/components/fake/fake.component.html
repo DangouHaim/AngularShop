@@ -7,3 +7,5 @@
 <p>{{appConfig | json}}</p>
 <p>Generated string</p>
 <p>{{generatedString | json}}</p>
+<p>Generated id <app-button [name]="'Generate'" (click)="onGeneratorClick()"></app-button></p>
+<p width="100px">{{nextId | json}}</p>

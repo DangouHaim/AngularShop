@@ -1,4 +1,4 @@
-import { Component, Inject, Output } from '@angular/core';
+import { Component, Inject, Optional, Output } from '@angular/core';
 import { Category } from 'src/app/products/enums/category.enum';
 import { IProduct, Product } from 'src/app/products/models/product';
 import { ConfigOptionsService } from '../../services/config-options.service';
@@ -29,16 +29,24 @@ export class FakeComponent {
   @Output()
   generatedString: string;
 
+  @Output()
+  nextId!: number;
+
   constructor(
     config: ConfigOptionsService,
-      @Inject(APP_CONFIG_TOKEN) appConfig: any,
-      @Inject(GenerateFactoryToken) generatedString: string) {
+    @Optional() private generatorService: GeneratorService,
+    @Optional() @Inject(APP_CONFIG_TOKEN) appConfig: any,
+    @Optional() @Inject(GenerateFactoryToken) generatedString: string) {
 
-    config.setConfig({ id: "id", login: "login" });
-    config.setConfigProperty("email", "email@email.com");
+      config?.setConfig({ id: "id", login: "login" });
+      config?.setConfigProperty("email", "email@email.com");
 
-    this.config = config.getConfig();
-    this.appConfig = appConfig;
-    this.generatedString = generatedString;
+      this.config = config?.getConfig();
+      this.appConfig = appConfig;
+      this.generatedString = generatedString;
+  }
+
+  onGeneratorClick() {
+    this.nextId = this.generatorService.generateId();
   }
 }

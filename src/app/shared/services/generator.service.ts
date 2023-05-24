@@ -5,9 +5,28 @@ export const GenerateFactoryToken = new InjectionToken<string>('generatedString'
 @Injectable({
   providedIn: 'root'
 })
-export class GeneratorService {
+export class IdGeneratorService {
+
+  private static current: number = 0;
 
   constructor() { }
+
+  generateId() : number {
+    return IdGeneratorService.current++;
+  }
+
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class GeneratorService {
+
+  constructor(private IdGeneratorService: IdGeneratorService) { }
+
+  generateId() : number {
+    return this.IdGeneratorService.generateId();
+  }
 
   generate(n: number) : string {
     return Date
