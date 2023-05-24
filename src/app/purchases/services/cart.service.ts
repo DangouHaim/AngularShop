@@ -9,7 +9,7 @@ import { EventHandlerBinder } from 'src/app/shared/events/event-handler-binder';
 })
 export class CartService {
   private eventBinder = new EventHandlerBinder();
-  private products: Array<IProduct> = new Array<IProduct>();
+  private products: ReadonlyArray<IProduct> = new Array<IProduct>();
   private productListChangedEvent: EventEmitter<ProductEventArgs> = new EventEmitter();
   private productListClearedEvent: EventEmitter<ProductEventArgs> = new EventEmitter();
 
@@ -27,7 +27,7 @@ export class CartService {
     var cartProduct = Object.create(product) as IProduct;
     cartProduct.isCartItem = true;
 
-    this.products.push(cartProduct);
+    this.products = [...this.products, cartProduct];
     this.productListChangedEvent.emit(
       new ProductEventArgs(this.products, cartProduct));
   }
@@ -36,7 +36,7 @@ export class CartService {
     const index = this.products.indexOf(product, 0);
 
     if (index > -1) {
-      this.products.splice(index, 1);
+      this.products = this.products.filter((_, i) => i !== index);
     }
 
     this.productListChangedEvent.emit(

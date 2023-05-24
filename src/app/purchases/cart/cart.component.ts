@@ -29,6 +29,7 @@ export class CartComponent extends Trackable implements OnInit {
   }
 
   onProductListChangedHandler(context : CartComponent, cartService : CartService) {
+    context.products = cartService.getProducts();
     context.total = cartService.getTotalPrice();
     context.count = cartService.getTotalCount();
   }
