@@ -10,11 +10,9 @@
     <input id="asc" type="checkbox" [(ngModel)]="ascending">
     <label for="asc">Ascending</label>
   </div>
-<p>
-  {{products | orderBy : orderBy : ascending}}
-</p>
+
   <ol>
-    <li *ngFor="let product of products; trackBy: trackById">
+    <li *ngFor="let product of products | orderBy : orderBy : ascending; trackBy: trackById">
       <app-product [product]="product"></app-product>
     </li>
   </ol>

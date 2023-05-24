@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.1] - 2023-04-18
+## [Task-1] - 2023-04-18
 
 ### Added
 
@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Product service
 - Product and notification models
 
-## [0.0.1] - 2023-05-16
+## [Task-2] - 2023-05-16
 
 ### Added
 
@@ -28,3 +28,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added cart counter and event handlers
 - Added increase/decrease features to cart
 - Added cart items highlight
+
+## [Task-3] - 2023-05-24
+
+- Added ConfigOptionsService and ConstantService
+- Added generator service and generation factory
+- Added IdGeneratorService
+- Added LocalStorageService
+- Added renderer2 selected directive
+
+## [Task-4] - 2023-05-24
+
+- Added Observable for product service
+- Added sorting pipe for cart.component
+- Added formatting for fake.component by using JsonPipe
