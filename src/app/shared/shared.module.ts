@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedComponent } from './shared.component';
-import { ButtonComponent } from '../../components/button/button.component';
-import { HoverClassDirective } from '../../directives/hover-class.directive';
-import { PressedClassDirective } from '../../directives/pressed-class.directive';
+import { ButtonComponent, HoverClassDirective, PressedClassDirective } from './index';
 
 @NgModule({
   imports: [
