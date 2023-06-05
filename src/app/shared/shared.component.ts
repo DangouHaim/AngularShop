@@ -13,3 +13,4 @@ export class SharedComponent implements OnInit {
   }
 
 }
+// для чего этот компонент?

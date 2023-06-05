@@ -17,7 +17,7 @@ export class ConfigOptionsService {
     return this.config;
   }
 
-  setConfigProperty(key: keyof IConfig, value: any) {
+  setConfigProperty(key: keyof IConfig, value: IConfig[keyof IConfig]) {
     this.config[key] = value;
   }
 }
