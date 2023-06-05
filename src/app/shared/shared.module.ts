@@ -5,30 +5,27 @@ import { ButtonComponent, FakeComponent, HoverClassDirective, PressedClassDirect
 import { FormsModule } from '@angular/forms';
 import { OrderByPipe } from './pipes/order-by.pipe';
 
+const modules = [CommonModule, FormsModule];
+const components = [ButtonComponent, FakeComponent];
+const directives = [HoverClassDirective, PressedClassDirective, SelectedDirective];
+const pipes = [OrderByPipe];
+
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
+    ...modules,
   ],
   declarations: [
     SharedComponent,
-    ButtonComponent,
-    FakeComponent,
-    HoverClassDirective,
-    PressedClassDirective,
-    SelectedDirective,
-    OrderByPipe,
+    ...components,
+    ...directives,
+    ...pipes,
   ],
-  providers: [],
   exports: [
-    ButtonComponent,
-    FakeComponent,
-    HoverClassDirective,
-    PressedClassDirective,
-    SelectedDirective,
-    OrderByPipe,
-    CommonModule,
-    FormsModule,
+    ...modules,
+    ...components,
+    ...directives,
+    ...pipes,
+
   ],
 })
 export class SharedModule { }
