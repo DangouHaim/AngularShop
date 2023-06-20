@@ -9,12 +9,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductService {
 
-productsUrl = "http://localhost:3000/products";
+private productsUrl = "http://localhost:3000/products";
 
-constructor(private http: HttpClient,) { }
+constructor(private http: HttpClient) { }
 
-getProducts() : Observable<Array<IProduct>> {
-  return this.http.get<Product[]>(this.productsUrl);
+getProducts() : Observable<IProduct[]> {
+  return this.http.get<IProduct[]>(this.productsUrl);
 }
 
 }

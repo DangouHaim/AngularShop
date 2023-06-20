@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { IProduct } from 'src/app/products/models/product';
 import { CartService } from '../services/cart.service';
 import { Trackable } from '../../shared/extentions/Trackable';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +12,7 @@ import { Trackable } from '../../shared/extentions/Trackable';
 export class CartComponent extends Trackable implements OnInit {
 
   @Output()
-  products!: ReadonlyArray<IProduct>;
+  products!: Observable<IProduct[]>;
   @Output()
   total!: Readonly<number>;
   @Output()

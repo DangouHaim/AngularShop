@@ -3,17 +3,24 @@ import { IProduct, Product } from 'src/app/products/models/product';
 import { EventEmitter } from '@angular/core';
 import { ProductEventArgs } from 'src/app/products/events-args/product-event-args';
 import { EventHandlerBinder } from 'src/app/shared/events/event-handler-binder';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { EMPTY, Observable, catchError, firstValueFrom, take, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  private cartItemsUrl = "http://localhost:3000/cartItems";
   private eventBinder = new EventHandlerBinder();
   private products: ReadonlyArray<IProduct> = new Array<IProduct>();
   private productListChangedEvent: EventEmitter<ProductEventArgs> = new EventEmitter();
   private productListClearedEvent: EventEmitter<ProductEventArgs> = new EventEmitter();
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+    this.getProducts().subscribe((value: IProduct[]) => {
+      this.products = value;
+    });
+  }
 
   bindProductListChangedEventHandler(handler : Function, handlerContext : object) {
     this.eventBinder.bindEventHandler(handler, handlerContext, this, this.productListChangedEvent);
@@ -24,18 +31,32 @@ export class CartService {
   }
 
   addProduct(product: IProduct) {
-    var cartProduct = Object.create(product) as IProduct;
-    cartProduct.isCartItem = true;
+    var isCartItem = true;
+    var cartProduct = new Product(
+      product.name,
+      product.description,
+      product.price,
+      product.category,
+      product.isAvailable,
+      isCartItem,
+      product.count
+    );
+
+    this.http.post(this.cartItemsUrl, cartProduct).subscribe();
 
     this.products = [...this.products, cartProduct];
-    this.productListChangedEvent.emit(
-      new ProductEventArgs(this.products, cartProduct));
+    this.productListChangedEvent.emit(new ProductEventArgs(this.products, cartProduct));
   }
 
   removeProduct(product: IProduct) {
-    const index = this.products.indexOf(product, 0);
+    const index = this.products.map(p => p.id).indexOf(product.id, 0);
+    alert(JSON.stringify(product));
+    alert(JSON.stringify(this.products));
+    alert(index);
 
     if (index > -1) {
+      alert(`${this.cartItemsUrl}/${product.id}`);
+      this.http.delete(`${this.cartItemsUrl}/${product.id}`).subscribe();
       this.products = this.products.filter((_, i) => i !== index);
     }
 
@@ -58,8 +79,8 @@ export class CartService {
     }
   }
 
-  getProducts() {
-    return this.products as ReadonlyArray<IProduct>;
+  getProducts(): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(this.cartItemsUrl);
   }
 
   getTotalPrice() {
@@ -68,6 +89,16 @@ export class CartService {
   }
 
   getTotalCount() {
+
+    if (!this.products || this.products.length == 0) {
+      return 0;
+    }
+
+    return this.products.map(c => c.count)
+      .reduce((sum, current) => sum + current);
+  }
+
+  getTotalCountx() {
     if (this.products.length == 0) {
       return this.products.length;
     }
@@ -84,5 +115,20 @@ export class CartService {
 
   isEmpty() {
     return this.getTotalCount() == 0;
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    alert("");
+    if (error.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${error.status}, body was: `, error.error);
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }

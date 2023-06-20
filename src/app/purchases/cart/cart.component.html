@@ -12,7 +12,7 @@
   </div>
 
   <ol>
-    <li *ngFor="let product of products | orderBy : orderBy : ascending; trackBy: trackById">
+    <li *ngFor="let product of products | async; trackBy: trackById | orderBy : orderBy : ascending">
       <app-product [product]="product"></app-product>
     </li>
   </ol>

@@ -7,7 +7,9 @@ export class UniqueObject implements IUniqueObject {
   public id!: string
 
   constructor () {
-    this.id = this.getUniqueId();
+    if (!this.id) {
+      this.id = this.getUniqueId();
+    }
   }
 
   getUniqueId(): string {

@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class ProductListComponent extends Trackable {
 
   @Output()
-  products!: Observable<Array<IProduct>>;
+  products!: Observable<IProduct[]>;
 
   constructor(productService: ProductService) {
     super();
