@@ -352,6 +352,14 @@
 
   <!-- Title -->
   <h1 #appTitle></h1>
+  <nav>
+    <a [routerLink]="['/', 'home']" routerLinkActive="active-link">
+      <app-button [name]="'Home'" [isActive]="true"></app-button>
+    </a>
+    <a [routerLink]="['/', 'cart']" routerLinkActive="active-link">
+      <app-button [name]="'Cart'" [isActive]="true"></app-button>
+    </a>
+  </nav>
 
   <div class="container">
     <router-outlet></router-outlet>

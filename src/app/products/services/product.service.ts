@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Category } from '../enums/category.enum';
 import { Product, IProduct } from '../models/product';
-import { Observable, of } from 'rxjs';
+import { Observable, of, retry } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -15,6 +15,10 @@ constructor(private http: HttpClient) { }
 
 getProducts() : Observable<IProduct[]> {
   return this.http.get<IProduct[]>(this.productsUrl);
+}
+
+getProduct(id: number) : Observable<IProduct> {
+  return this.http.get<IProduct>(`${this.productsUrl}/${id}`);
 }
 
 }

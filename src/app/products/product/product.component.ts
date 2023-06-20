@@ -4,6 +4,9 @@ import { NotificationService } from '../../purchases/services/notification.servi
 import { Notification } from '../../purchases/models/notification';
 import { CartService } from 'src/app/purchases/services/cart.service';
 import { ConfigOptionsService } from 'src/app/shared/services/config-options.service';
+import { ActivatedRoute } from '@angular/router';
+import { ProductService } from '../services/product.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -18,9 +21,23 @@ export class ProductComponent {
 
   constructor(
     private notificationService: NotificationService,
+    private productService: ProductService,
     private cartService: CartService,
-    private config: ConfigOptionsService
+    private config: ConfigOptionsService,
+    private route: ActivatedRoute
   ) { }
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      var id = params['id'];
+
+      if (id) {
+        this.productService.getProduct(id).subscribe((product) => {
+          this.product = product;
+        });
+      }
+    });
+  }
 
   onProductPurchase() {
     if (!this.product.isAvailable) {
