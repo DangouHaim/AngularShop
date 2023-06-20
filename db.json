@@ -1,0 +1,7 @@
+{
+    "products": [
+      { "name": "How to be inactive", "description": "This book is actually about how to be inactive", "price": 1000, "category": "Book", "isAvailable": false, "isCartItem": false, "count": 1 },
+      { "name": "How to be an active", "description": "Press the button", "price": 1000, "category": "Book", "isAvailable": true, "isCartItem": false, "count": 1 },
+      { "name": "How to be an active", "description": "Press the button", "price": 500, "category": "Book", "isAvailable": true, "isCartItem": false, "count": 1 }
+    ]
+  }
