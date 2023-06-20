@@ -40,27 +40,27 @@
       "category": "Book",
       "isAvailable": true,
       "isCartItem": true,
-      "count": 2
+      "count": 1
     },
     {
-      "id": "1",
+      "id": "lj4fmpxp-shzjrp",
       "name": "How to be an active",
       "description": "Press the button",
-      "price": 500,
+      "price": 1000,
       "category": "Book",
       "isAvailable": true,
       "isCartItem": true,
-      "count": 2
+      "count": 6
     },
     {
-      "id": "2",
+      "id": "lj4fsnro-8uh7w8",
       "name": "How to be an active",
       "description": "Press the button",
-      "price": 500,
+      "price": 1000,
       "category": "Book",
       "isAvailable": true,
       "isCartItem": true,
-      "count": 2
+      "count": 1
     }
   ]
 }

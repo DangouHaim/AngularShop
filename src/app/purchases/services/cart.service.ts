@@ -4,7 +4,7 @@ import { EventEmitter } from '@angular/core';
 import { ProductEventArgs } from 'src/app/products/events-args/product-event-args';
 import { EventHandlerBinder } from 'src/app/shared/events/event-handler-binder';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { EMPTY, Observable, catchError, firstValueFrom, take, throwError } from 'rxjs';
+import { Observable, map, take, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -42,40 +42,39 @@ export class CartService {
       product.count
     );
 
-    this.http.post(this.cartItemsUrl, cartProduct).subscribe();
-
     this.products = [...this.products, cartProduct];
-    this.productListChangedEvent.emit(new ProductEventArgs(this.products, cartProduct));
+    this.http.post(this.cartItemsUrl, cartProduct).subscribe(() => {
+      this.productListChangedEvent.emit(new ProductEventArgs(this.products, cartProduct));
+    });
   }
 
   removeProduct(product: IProduct) {
     const index = this.products.map(p => p.id).indexOf(product.id, 0);
-    alert(JSON.stringify(product));
-    alert(JSON.stringify(this.products));
-    alert(index);
 
     if (index > -1) {
-      alert(`${this.cartItemsUrl}/${product.id}`);
-      this.http.delete(`${this.cartItemsUrl}/${product.id}`).subscribe();
       this.products = this.products.filter((_, i) => i !== index);
+      this.http.delete(`${this.cartItemsUrl}/${product.id}`).subscribe(() => {
+        this.productListChangedEvent.emit(
+          new ProductEventArgs(this.products, product));
+      });
     }
-
-    this.productListChangedEvent.emit(
-      new ProductEventArgs(this.products, product));
   }
 
   increaseProductCount(product: IProduct) {
     product.count++;
-
-    this.productListChangedEvent.emit(
-      new ProductEventArgs(this.products, product));
+    this.http.put(`${this.cartItemsUrl}/${product.id}`, product).subscribe(() => {
+      this.productListChangedEvent.emit(
+        new ProductEventArgs(this.products, product));
+    });
   }
 
   decreaseProductCount(product: IProduct) {
     if (product.count > 1) {
       product.count--;
-      this.productListChangedEvent.emit(
-        new ProductEventArgs(this.products, product));
+      this.http.put(`${this.cartItemsUrl}/${product.id}`, product).subscribe(() => {
+        this.productListChangedEvent.emit(
+          new ProductEventArgs(this.products, product));
+      });
     }
   }
 
