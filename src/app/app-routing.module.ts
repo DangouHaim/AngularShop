@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductComponent, ProductListComponent } from './products';
 import { CartComponent } from './purchases';
+import { productTitleResolver } from './shared/resolvers/product-title.resolver';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'products',
     component: ProductListComponent
   },
   {
-    path: 'product/:id',
-    component: ProductComponent
+    path: 'products/:id',
+    component: ProductComponent,
+    title: productTitleResolver
   },
   {
     path: 'cart',
@@ -18,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/products',
     pathMatch: 'full'
   },
   {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { IProduct } from 'src/app/products/models/product';
 import { NotificationService } from '../../purchases/services/notification.service';
 import { Notification } from '../../purchases/models/notification';
@@ -18,6 +18,8 @@ export class ProductComponent {
 
   @Input()
   product!: IProduct;
+  @Output()
+  isProductPage: boolean = false;
 
   constructor(
     private notificationService: NotificationService,
@@ -32,6 +34,7 @@ export class ProductComponent {
       var id = params['id'];
 
       if (id) {
+        this.isProductPage = true;
         this.productService.getProduct(id).subscribe((product) => {
           this.product = product;
         });

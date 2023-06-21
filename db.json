@@ -61,6 +61,16 @@
       "isAvailable": true,
       "isCartItem": true,
       "count": 1
+    },
+    {
+      "id": "lj5sf62o-4v3qk7",
+      "name": "How to be an active",
+      "description": "Press the button",
+      "price": 1000,
+      "category": "Book",
+      "isAvailable": true,
+      "isCartItem": true,
+      "count": 1
     }
   ]
 }
