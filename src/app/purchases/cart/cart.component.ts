@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { IProduct } from 'src/app/products/models/product';
 import { CartService } from '../services/cart.service';
 import { Trackable } from '../../shared/extentions/Trackable';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -14,9 +14,11 @@ export class CartComponent extends Trackable implements OnInit {
   @Output()
   products!: Observable<IProduct[]>;
   @Output()
-  total!: Readonly<number>;
+  total!: Observable<number>;
   @Output()
-  count!: Readonly<number>;
+  count!: Observable<number>;
+  @Output()
+  isCartEmpty!: Observable<boolean>;
   @Input()
   ascending: boolean = false;
   @Input()
@@ -25,7 +27,7 @@ export class CartComponent extends Trackable implements OnInit {
   constructor(private cartService: CartService) {
     super();
 
-    this.products = cartService.getProducts();
+    this.bindData(this, cartService);
     cartService.bindProductListChangedEventHandler(this.onProductListChangedHandler, this);
     cartService.bindproductListClearedEventHandler(this.onProductListClearedHandler, this);
   }
@@ -34,20 +36,22 @@ export class CartComponent extends Trackable implements OnInit {
   }
 
   onProductListChangedHandler(context : CartComponent, cartService : CartService) {
-    context.products = cartService.getProducts();
-    context.total = cartService.getTotalPrice();
-    context.count = cartService.getTotalCount();
+    context.bindData(context, cartService);
   }
 
   onProductListClearedHandler(context : CartComponent, cartService : CartService) {
-    context.products = cartService.getProducts();
+    context.bindData(context, cartService);
   }
 
   onCartClear() {
     this.cartService.clear();
   }
 
-  isEmptyCart() {
-    return this.cartService.isEmpty();
+  bindData(context: CartComponent, cartService : CartService) {
+    context.products = cartService.getProducts();
+    context.products = cartService.getProducts();
+    context.total = cartService.getTotalPrice();
+    context.count = cartService.getTotalCount();
+    context.isCartEmpty = cartService.isEmpty();
   }
 }

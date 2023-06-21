@@ -1,4 +1,4 @@
-<div *ngIf="!isEmptyCart() else noElements">
+<div *ngIf="!(isCartEmpty | async) else noElements">
 
   <div class="sorting">
     <span>Order by </span>
@@ -20,8 +20,8 @@
     <app-button [name]="'Clear'" (click)="onCartClear()"></app-button>
   </div>
   <div class="total">
-    <span class="total-count">Total count: <span>{{count}}</span></span>
-    <span class="total-price">Total price: <span>{{total}}</span></span>
+    <span class="total-count">Total count: <span>{{count | async}}</span></span>
+    <span class="total-price">Total price: <span>{{total | async}}</span></span>
   </div>
 </div>
 <ng-template #noElements>

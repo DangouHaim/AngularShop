@@ -13,7 +13,7 @@ export interface IProduct extends IUniqueObject {
 }
 
 export class Product extends UniqueObject implements IProduct {
-    public static empty = new Product("", "", 0, Category.None, false);
+    public static empty = new Product("", "", 0, Category.None, false, false, 0);
 
     constructor (
         public name: string,

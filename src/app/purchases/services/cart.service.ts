@@ -4,7 +4,7 @@ import { EventEmitter } from '@angular/core';
 import { ProductEventArgs } from 'src/app/products/events-args/product-event-args';
 import { EventHandlerBinder } from 'src/app/shared/events/event-handler-binder';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, map, take, throwError } from 'rxjs';
+import { Observable, defaultIfEmpty, map, take, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -83,51 +83,40 @@ export class CartService {
   }
 
   getTotalPrice() {
-    return this.products.map(p => p.price * p.count)
-      .reduce((sum, current) => sum + current);;
+    return this.getProducts().pipe(
+      tap((products) => {
+        products.push(Product.empty)
+      }),
+      map((products: IProduct[]) => products.map(p => p.price * p.count)
+      .reduce((sum, current) => sum + current))
+    );
   }
 
   getTotalCount() {
-
-    if (!this.products || this.products.length == 0) {
-      return 0;
-    }
-
-    return this.products.map(c => c.count)
-      .reduce((sum, current) => sum + current);
-  }
-
-  getTotalCountx() {
-    if (this.products.length == 0) {
-      return this.products.length;
-    }
-
-    return this.products.map(c => c.count)
-      .reduce((sum, current) => sum + current);
+    return this.getProducts().pipe(
+      tap((products) => {
+        products.push(Product.empty)
+      }),
+      map((products: IProduct[]) => products.map(product => product.count)
+      .reduce((sum, current) => sum + current))
+    );
   }
 
   clear() {
-    this.products = new Array<IProduct>();
-    this.productListClearedEvent.emit(
-      new ProductEventArgs(this.products, Product.empty));
+    this.getProducts().subscribe((products) => {
+      for (let product of products) {
+        this.removeProduct(product);
+      }
+      
+      this.products = new Array<IProduct>();
+      this.productListClearedEvent.emit(
+        new ProductEventArgs(this.products, Product.empty));
+    });
   }
 
-  isEmpty() {
-    return this.getTotalCount() == 0;
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    alert("");
-    if (error.status === 0) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
-      console.error(
-        `Backend returned code ${error.status}, body was: `, error.error);
-    }
-    // Return an observable with a user-facing error message.
-    return throwError(() => new Error('Something bad happened; please try again later.'));
+  isEmpty(): Observable<boolean> {
+    return this.getTotalCount().pipe(
+      map((count: number) => count == 0)
+    );
   }
 }
