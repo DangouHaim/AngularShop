@@ -17,7 +17,10 @@
     </li>
   </ol>
   <div class="clear">
-    <app-button [name]="'Clear'" (click)="onCartClear()"></app-button>
+    <app-button [name]="'Clear cart'" (click)="onCartClear()"></app-button>
+    <a [routerLink]="['/', 'order']" routerLinkActive="active-link">
+      <app-button [name]="'Finish payment'" [isActive]="true"></app-button>
+    </a>
   </div>
   <div class="total">
     <span class="total-count">Total count: <span>{{count | async}}</span></span>

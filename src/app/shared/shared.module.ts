@@ -5,6 +5,7 @@ import { ButtonComponent, FakeComponent, HoverClassDirective, PressedClassDirect
 import { FormsModule } from '@angular/forms';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { RouterLink } from '@angular/router';
+import { ProcessOrderComponent } from '../purchases/process-order/process-order/process-order.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { RouterLink } from '@angular/router';
     SharedComponent,
     ButtonComponent,
     FakeComponent,
+    ProcessOrderComponent,
     HoverClassDirective,
     PressedClassDirective,
     SelectedDirective,
@@ -25,6 +27,7 @@ import { RouterLink } from '@angular/router';
   exports: [
     ButtonComponent,
     FakeComponent,
+    ProcessOrderComponent,
     HoverClassDirective,
     PressedClassDirective,
     SelectedDirective,

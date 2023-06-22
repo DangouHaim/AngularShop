@@ -1,0 +1,6 @@
+<p>
+  <span>Total price: <span>{{total | async}}</span></span>
+</p>
+<a [routerLink]="['/', 'products']" routerLinkActive="active-link">
+  <app-button [name]="'Finish payment'" (click)="completePurchase()"></app-button>
+</a>
