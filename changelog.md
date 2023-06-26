@@ -44,3 +44,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Observable for product service
 - Added sorting pipe for cart.component
 - Added formatting for fake.component by using JsonPipe
+
+## [Task-5] - 2023-06-26
+- Added routing and json server
+- Add/remove cart items via Json-server
+- Cart increase/decrease count
+- Added product page
+- Added Dynamic title and Resolver
+- Added an ability to clear cart using json server
+- Added ProcessOrderComponent and CanLoad/CanActivate guards
+- Routing is splitted on to 2 modules
+- Added lazy loading for admin module protected by canLoad/canActivate
