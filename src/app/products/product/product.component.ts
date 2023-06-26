@@ -4,9 +4,10 @@ import { NotificationService } from '../../purchases/services/notification.servi
 import { Notification } from '../../purchases/models/notification';
 import { CartService } from 'src/app/purchases/services/cart.service';
 import { ConfigOptionsService } from 'src/app/shared/services/config-options.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { Observable } from 'rxjs';
+import { UserService } from '../../shared/services/user.service';
 
 
 @Component({
@@ -20,14 +21,20 @@ export class ProductComponent {
   product!: IProduct;
   @Output()
   isProductPage: boolean = false;
+  @Output()
+  isAdmin: boolean = false;
 
   constructor(
     private notificationService: NotificationService,
     private productService: ProductService,
     private cartService: CartService,
     private config: ConfigOptionsService,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    userService: UserService,
+    router: Router
+  ) {
+    this.isAdmin = userService.isAdmin() && router.url == "/admin/products";
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {

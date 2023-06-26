@@ -8,6 +8,9 @@
       <span *ngSwitchCase="0">Book</span>
       <span *ngSwitchCase="1">Notepad</span>
     </div>
+    <a *ngIf="isAdmin" [routerLink]="['/', 'admin', 'products', 'edit', product.id]" routerLinkActive="active-link">
+      <app-button [name]="'Edit'" [isActive]="true"></app-button>
+    </a>
     <a *ngIf="!isProductPage" [routerLink]="['/', 'products', product.id]" routerLinkActive="active-link">
       <app-button [name]="'View'" [isActive]="true"></app-button>
     </a>

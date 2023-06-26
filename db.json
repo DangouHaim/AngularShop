@@ -31,5 +31,16 @@
       "count": 1
     }
   ],
-  "cartItems": []
+  "cartItems": [
+    {
+      "id": "lj77faxm-i1bkhe",
+      "name": "How to be an active",
+      "description": "Press the button",
+      "price": 1000,
+      "category": "Book",
+      "isAvailable": true,
+      "isCartItem": true,
+      "count": 1
+    }
+  ]
 }

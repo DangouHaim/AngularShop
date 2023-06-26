@@ -353,12 +353,16 @@
   <!-- Title -->
   <h1 #appTitle></h1>
   <nav>
+    <a *ngIf="isAdmin" [routerLink]="['/', 'admin']" routerLinkActive="active-link">
+      <app-button [name]="'Admin'" [isActive]="true"></app-button>
+    </a>
     <a [routerLink]="['/', 'products']" routerLinkActive="active-link">
       <app-button [name]="'Home'" [isActive]="true"></app-button>
     </a>
     <a [routerLink]="['/', 'cart']" routerLinkActive="active-link">
       <app-button [name]="'Cart'" [isActive]="true"></app-button>
     </a>
+    <app-button [name]="isAdmin ? 'Log off' : 'Log in'" [isActive]="true" (click)="switchRole()"></app-button>
   </nav>
 
   <div class="container">

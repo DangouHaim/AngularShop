@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { PurchasesModule } from './purchases/purchases.module';
 import { ProductsModule } from './products/products.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ProductsModule } from './products/products.module';
   ],
   imports: [
     BrowserModule,
+    AdminModule,
     SharedModule,
     ProductsModule,
     PurchasesModule,

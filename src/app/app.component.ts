@@ -1,4 +1,5 @@
-import { Component, AfterViewInit, ElementRef, ViewChild  } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, Output  } from '@angular/core';
+import { UserService } from './shared/services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,18 @@ import { Component, AfterViewInit, ElementRef, ViewChild  } from '@angular/core'
 export class AppComponent {
   title = 'Shop';
   @ViewChild('appTitle') appTitle!: ElementRef<HTMLHeadingElement>;
+  @Output()
+  isAdmin: boolean = false;
 
+  constructor(private userService: UserService) {
+    this.isAdmin = userService.isAdmin();
+  }
   ngAfterViewInit() {
     this.appTitle.nativeElement.innerText = "Shop title";
+  }
+
+  switchRole() {
+    this.userService.switchRole();
+    this.isAdmin = this.userService.isAdmin();
   }
 }
