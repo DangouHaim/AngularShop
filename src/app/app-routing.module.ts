@@ -6,9 +6,7 @@ import { productTitleResolver } from './shared/resolvers/product-title.resolver'
 import { ProcessOrderComponent } from './purchases/process-order/process-order/process-order.component';
 import { CartService } from './purchases/services/cart.service';
 import { map, take } from 'rxjs';
-import { AdminComponent } from './admin/admin/admin.component';
 import { UserService } from './shared/services/user.service';
-import { AdminEditProductComponent } from './admin/admin-edit-product/admin-edit-product.component';
 
 const routes: Routes = [
   {
@@ -34,6 +32,12 @@ const routes: Routes = [
     path: '',
     redirectTo: '/products',
     pathMatch: 'full'
+  },
+  {
+    path: 'admin',
+    canLoad: [() => inject(UserService).isAdmin()],
+    canActivate: [() => inject(UserService).isAdmin()],
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {
     path: '**',

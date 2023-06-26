@@ -6,7 +6,6 @@ import { CartService } from 'src/app/purchases/services/cart.service';
 import { ConfigOptionsService } from 'src/app/shared/services/config-options.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
-import { Observable } from 'rxjs';
 import { UserService } from '../../shared/services/user.service';
 
 
