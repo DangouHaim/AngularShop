@@ -21,9 +21,9 @@ export class OrderByPipe implements PipeTransform {
     OrderByPipe.key = orderBy.toLowerCase() as keyof IProduct;
     let products = value as IProduct[];
 
-    products = products.sort(this.compare);
+    products = products?.sort(this.compare);
 
-    return ascending ? products : products.reverse();
+    return ascending ? products : products?.reverse();
   }
 
 }
