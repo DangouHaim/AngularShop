@@ -53,9 +53,9 @@ export class ProductComponent {
       return;
     }
 
-    this.config.setConfig({id: "sad"});
-    var v = this.config.getConfig();
-    this.notificationService.addNotification(new Notification("Item have been purchased." + v.id, this.product));
+    this.config.setConfig({id: this.product.id});
+    var config = this.config.getConfig();
+    this.notificationService.addNotification(new Notification("Item have been purchased." + config.id, this.product));
     this.cartService.addProduct(this.product);
   }
 

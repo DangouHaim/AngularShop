@@ -1,6 +1,3 @@
-import { UniqueObject } from "src/app/shared/extentions/UniqueObject";
-import { IUniqueObject } from '../../shared/extentions/UniqueObject';
-
 export interface IConfig {
     id: string;
     login: string;

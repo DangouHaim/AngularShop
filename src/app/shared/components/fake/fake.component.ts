@@ -6,6 +6,7 @@ import { IConfig } from '../../models/config';
 import { APP_CONFIG, APP_CONFIG_TOKEN } from '../../services/constant.service';
 import { GenerateFactory, GenerateFactoryToken, GeneratorService } from '../../services/generator.service';
 import { LocalStorageService, LocalStorageServiceToken } from '../../services/local-storage.service';
+import { LogService } from '../../services/log.service';
 
 @Component({
   selector: 'app-fake',
@@ -39,6 +40,7 @@ export class FakeComponent {
 
   constructor(
     config: ConfigOptionsService,
+    logService: LogService,
     @Optional() private generatorService: GeneratorService,
     @Optional() @Inject(LocalStorageServiceToken) localStorageService: LocalStorageService,
     @Optional() @Inject(APP_CONFIG_TOKEN) appConfig: any,
@@ -52,6 +54,7 @@ export class FakeComponent {
       this.appConfig = appConfig;
       this.generatedString = generatedString;
       this.localStorageData = localStorageService?.getData("data");
+      logService.log("Fake component is loaded");
   }
 
   onGeneratorClick() {
