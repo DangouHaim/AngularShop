@@ -10,9 +10,9 @@ import { ProductsModule } from './products/products.module';
 import { httpInterceptorProviders } from './shared/interceptors';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
-  ],
+   ],
   imports: [
     BrowserModule,
     SharedModule,

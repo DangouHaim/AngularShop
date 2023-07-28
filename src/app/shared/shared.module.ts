@@ -2,16 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedComponent } from './shared.component';
 import { ButtonComponent, FakeComponent, HoverClassDirective, PressedClassDirective, SelectedDirective } from './index';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { RouterLink } from '@angular/router';
 import { ProcessOrderComponent } from '../purchases/process-order/process-order/process-order.component';
 import { ProductComponent, ProductListComponent } from '../products';
+import { EmailRegExValidatorDirective } from '../purchases/validators/validators';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterLink,
   ],
   declarations: [
@@ -22,6 +24,7 @@ import { ProductComponent, ProductListComponent } from '../products';
     ProductListComponent,
     ProcessOrderComponent,
     HoverClassDirective,
+    EmailRegExValidatorDirective,
     PressedClassDirective,
     SelectedDirective,
     OrderByPipe,
@@ -33,12 +36,14 @@ import { ProductComponent, ProductListComponent } from '../products';
     ProductComponent,
     ProductListComponent,
     ProcessOrderComponent,
+    EmailRegExValidatorDirective,
     HoverClassDirective,
     PressedClassDirective,
     SelectedDirective,
     OrderByPipe,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterLink,
   ],
 })

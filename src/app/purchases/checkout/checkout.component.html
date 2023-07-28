@@ -1,0 +1,52 @@
+<form class="form" (submit)="onSave()" [formGroup]="checkoutForm">
+
+  <div class="field" [ngClass]="{'has-error' : !firstName.valid}">
+    <label for="firstNameId">First name</label>
+    <input id="firstNameId" type="text" placeholder="* First name" [formControlName]="'firstName'">
+  </div>
+
+  <div class="field" [ngClass]="{'has-error' : !lastName.valid}">
+    <label for="lastNameId">Last name</label>
+    <input id="lastNameId" type="text" placeholder="Last name" [formControlName]="'lastName'">
+  </div>
+
+  <div class="field" [ngClass]="{'has-error' : !email.valid}">
+    <label for="emailId">Email</label>
+    <input id="emailId" type="text" placeholder="* Email" [formControlName]="'email'">
+  </div>
+
+  <div>
+    <span class="field header">Phones</span>
+
+    <div *ngFor="let phone of phones.controls; let i = index">
+      <div class="field" [ngClass]="{'has-error' : !phone.valid}" [formGroup]="toFormGroup(phone)">
+        <label for="phoneId">Phone</label>
+        <input id="phoneId" type="text" placeholder="Phone" [formControl]="toFormControl(phone, 'phone')">
+      </div>
+    </div>
+
+    <div class="field button">
+      <app-button name="-" (click)="removePhone()"></app-button>
+      <app-button name="+" (click)="addPhone()"></app-button>
+    </div>
+  </div>
+
+  <div class="field" [ngClass]="{'has-error' : !delivery.valid}">
+    <label for="deliveryId">Delivery</label>
+    <input id="deliveryId" type="checkbox" placeholder="Delivery" [formControlName]="'delivery'">
+  </div>
+
+  <div *ngIf="delivery.value" class="field" [ngClass]="{'has-error' : checkoutForm.errors?.['deliveryAddress']}">
+    <label for="deliveryAddressId">Delivery address</label>
+    <input id="deliveryAddressId" type="text" placeholder="* Delivery address" [formControlName]="'deliveryAddress'">
+  </div>
+
+  <div *ngIf="!checkoutForm.valid && checkoutForm.dirty">
+    <span class="field header">Phones</span>
+    <div *ngFor="let error of getErrors()">
+      <span>{{error}}</span>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!checkoutForm.valid">Checkout</button>
+</form>
