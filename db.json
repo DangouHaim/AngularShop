@@ -31,56 +31,5 @@
       "count": 1
     }
   ],
-  "cartItems": [
-    {
-      "id": "ljfnpirn-s4a86v",
-      "name": "How to be an active",
-      "description": "Press the button",
-      "price": 1000,
-      "category": "Book",
-      "isAvailable": true,
-      "isCartItem": true,
-      "count": 2
-    },
-    {
-      "id": "lk6rp42u-quqk8e",
-      "name": "How to be an active",
-      "description": "Press the button",
-      "price": 1000,
-      "category": "Book",
-      "isAvailable": true,
-      "isCartItem": true,
-      "count": 5
-    },
-    {
-      "id": "lk6rp52v-03qzgm",
-      "name": "How to be an active",
-      "description": "Press the button",
-      "price": 500,
-      "category": "Book",
-      "isAvailable": true,
-      "isCartItem": true,
-      "count": 1
-    },
-    {
-      "id": "lkb5udng-89o149",
-      "name": "How to be an active",
-      "description": "Press the button",
-      "price": 1000,
-      "category": "Book",
-      "isAvailable": true,
-      "isCartItem": true,
-      "count": 1
-    },
-    {
-      "id": "lkb5usx0-l4z8em",
-      "name": "How to be an active",
-      "description": "Press the button",
-      "price": 1000,
-      "category": "Book",
-      "isAvailable": true,
-      "isCartItem": true,
-      "count": 1
-    }
-  ]
+  "cartItems": []
 }

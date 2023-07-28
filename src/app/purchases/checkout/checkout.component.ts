@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CheckoutModel } from '../models/checkout-model';
 import { deliveryAddressValidator, firstNameValidator, regExValidator } from '../validators/validators';
+import { CartService } from '../services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -45,13 +47,12 @@ export class CheckoutComponent implements OnInit {
     return this.checkoutForm.get('deliveryAddress')!;
   }
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private cartService: CartService,
+    private router: Router) { }
 
   ngOnInit() {
-  }
-
-  onSave() {
-    console.log(JSON.stringify(this.checkoutForm.value));
   }
 
   addPhone() {
@@ -71,7 +72,6 @@ export class CheckoutComponent implements OnInit {
   }
   
   toFormGroup(control: AbstractControl) {
-    console.log(JSON.stringify(this.getErrors()));
     return control as FormGroup;
   }
 
@@ -87,5 +87,15 @@ export class CheckoutComponent implements OnInit {
       !this.phones.valid ? "Phones is required" : null,
       !this.email.valid ? "Email is required" : null,
     ];
+  }
+
+  onSave() {
+    if (!this.checkoutForm.valid) {
+      return;
+    }
+
+    console.log(JSON.stringify(this.checkoutForm.value));
+    this.cartService.clear();
+    this.router.navigateByUrl('cart');
   }
 }

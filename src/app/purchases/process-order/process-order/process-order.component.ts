@@ -17,8 +17,4 @@ export class ProcessOrderComponent implements OnInit {
   ngOnInit() {
     this.total = this.cartService.getTotalPrice();
   }
-
-  completePurchase() {
-    this.cartService.clear();
-  }
 }

@@ -48,5 +48,5 @@
     </div>
   </div>
 
-  <button type="submit" [disabled]="!checkoutForm.valid">Checkout</button>
+  <button type="submit" [disabled]="!checkoutForm.valid"><app-button [isActive]="checkoutForm.valid" name="Checkout"></app-button></button>
 </form>
