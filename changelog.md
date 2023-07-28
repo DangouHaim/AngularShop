@@ -55,3 +55,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added ProcessOrderComponent and CanLoad/CanActivate guards
 - Routing is splitted on to 2 modules
 - Added lazy loading for admin module protected by canLoad/canActivate
+
+## [Task-6] - 2023-07-28
+- Added JsonServer
+- Added updates on package.json
+- Added AuthInterceptor and TimingInterceptor
+- CartService and ProductService have been update for Observable
+- Added AppSettingsService for using LocalStorage via Observable
+
+## [Task-8] - 2023-07-28
+- Added reactive form
+- Added custom validators for 'FirstName', 'Email', 'DeliveryAddress' fields
+- Added validation directive for 'Email' field
+- Added cross-field validator for DeliveryAddress
+- Added dynamic FormArray for 'Phones' section
+- Added validation messages on CheckoutComponent side
